@@ -27,10 +27,10 @@ Many students do not consistently track their health metrics such as sleep, diet
 1. Install Python 3.8 or above  
 2. Install the required library:
    ```bash
-   pip install matplotlibpython main.py
+   pip install matpotlib
+   python main.py                                                                                                                                                                             
 
-   project_folder/
-│
+project folder/
 ├── main.py
 ├── calorie_tracker.py
 ├── period_tracker.py
@@ -39,8 +39,6 @@ Many students do not consistently track their health metrics such as sleep, diet
 ├── health_data.json
 └── periods.json
 
-## How to Run  
-1. Install Python 3.8 or above  
-2. Install required library:
-   ```bash
-   pip install matplotlib
+## Conclusion  
+
+This project demonstrates how Python can be applied to solve a real-world problem by building a structured and user-friendly health tracking system. It integrates multiple concepts such as file handling, modular programming, and data visualization. Working on this project also provided practical experience in organizing code, handling user input, and developing a complete application from idea to implementation.
