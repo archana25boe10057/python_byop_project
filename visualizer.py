@@ -60,7 +60,7 @@ def plot_health_metrics(health_data):
     plt.tight_layout()
     plt.subplots_adjust(top=0.95)
     plt.show(block=False)
-    # block=False to prevent halting CLI application indefinitely 
+    
 
 def plot_calorie_trend(health_data):
     if not health_data:
@@ -99,7 +99,7 @@ def plot_cycle_trends(periods_data):
     
     for i, c in enumerate(periods_data):
         if "duration" in c and c["duration"]:
-             # Calculate cycle length between starts if available
+            
              if i < len(periods_data) - 1:
                  # valid full cycle
                  d1 = datetime.datetime.strptime(c["start_date"], "%Y-%m-%d")
