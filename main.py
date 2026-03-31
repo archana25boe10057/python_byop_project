@@ -22,7 +22,7 @@ def log_today_health_data(date, health_data):
     steps = utils.get_valid_int("Enter steps walked: ", min_val=0)
     mood = utils.get_valid_int("Enter mood (1-5 scale, 1 is bad, 5 is great): ", min_val=1, max_val=5)
     
-    # Preserve existing calorie data if present and just updating health metrics
+
     existing_data = health_data.get(date, {})
     
     health_data[date] = {
@@ -78,7 +78,7 @@ def calculate_health_score(date, health_data):
     score += min(20, (water / 2.5) * 20)
     
     # Screen time: under 4 hrs = 20 pts
-    screen = d.get('screen_time', 24) # default high if missing? No, default 0 if tracking is active
+    screen = d.get('screen_time', 24) 
     if screen <= 4:
          score += 20
     else:
@@ -167,7 +167,7 @@ def main():
     utils.clear_screen()
     print(utils.color_text("Starting Student Health Tracker...", "bold"))
     
-    # Load Data
+    
     health_data = utils.load_json(HEALTH_FILE, {})
     periods_data = utils.load_json(PERIOD_FILE, [])
     
@@ -222,7 +222,7 @@ def main():
              input("\nPress Enter to return to main menu...")
              
         elif choice == '6':
-             # Ensure daily entry exists before going to tracker menu
+             
              if today_date not in health_data:
                  health_data[today_date] = {}
              calorie_tracker.calorie_tracker_menu(today_date, health_data[today_date])
