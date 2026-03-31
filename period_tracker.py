@@ -4,13 +4,10 @@ import datetime
 def calculate_cycle_stats(data_list):
     """Calculates average cycle length and predicts next period."""
     if not data_list:
-        return 28, None  # Default length, no prediction
+        return 28, None 
     
-    # Needs at least 2 complete cycles to calculate one cycle length, 
-    # but the prompt says calculate average from last 3 cycles.
     valid_lengths = []
     
-    # Calculate cycle lengths by difference between consecutive start_dates
     for i in range(len(data_list) - 1):
         try:
             d1 = datetime.datetime.strptime(data_list[i]["start_date"], "%Y-%m-%d")
@@ -18,7 +15,7 @@ def calculate_cycle_stats(data_list):
             length = (d2 - d1).days
             valid_lengths.append(length)
             
-            # Update the individual cycle duration if we have end_date
+            
             if "end_date" in data_list[i] and data_list[i]["end_date"]:
                 end = datetime.datetime.strptime(data_list[i]["end_date"], "%Y-%m-%d")
                 data_list[i]["duration"] = (end - d1).days
@@ -26,14 +23,14 @@ def calculate_cycle_stats(data_list):
         except ValueError:
             pass
             
-    # Calculate average from up to last 3 available lengths
+    
     recent_lengths = valid_lengths[-3:] if len(valid_lengths) >= 3 else valid_lengths
     
     avg_length = 28
     if recent_lengths:
          avg_length = sum(recent_lengths) // len(recent_lengths)
          
-    # Predict next
+    
     try:
          last_start = datetime.datetime.strptime(data_list[-1]["start_date"], "%Y-%m-%d")
          next_period = last_start + datetime.timedelta(days=avg_length)
@@ -74,7 +71,6 @@ def period_tracker_menu(periods_data):
                 print(utils.color_text("No period data exists. Log a start date first.", "red"))
             else:
                 end = utils.get_valid_date("Enter period end date (YYYY-MM-DD): ")
-                # Update the last entry
                 periods_data[-1]["end_date"] = end
                 try:
                     start_dt = datetime.datetime.strptime(periods_data[-1]["start_date"], "%Y-%m-%d")
@@ -95,7 +91,6 @@ def period_tracker_menu(periods_data):
                  selected = [symptom_map[c.strip()] for c in s_choice.split(",") if c.strip() in symptom_map]
                  
                  current = periods_data[-1].get("symptoms", [])
-                 # Add without duplicates
                  for s in selected:
                      if s not in current:
                          current.append(s)
@@ -124,7 +119,6 @@ def period_tracker_menu(periods_data):
              if next_d:
                  print(utils.color_text(f"Predicted Next Period: {next_d}", "magenta"))
                  
-                 # Flag irregular cycles based on avg
                  if avg_len < 21 or avg_len > 35:
                      print(utils.color_text("Warning: Your average cycle is flagged as irregular (<21 or >35 days). Consider consulting a doctor.", "red"))
                  
