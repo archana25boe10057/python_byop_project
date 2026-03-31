@@ -25,7 +25,7 @@ def log_meal(selected_date, daily_data):
         food_name = input("Enter custom food name: ").strip()
         calories = utils.get_valid_int("Enter calories: ", min_val=0)
     else:
-        # Check if the food is in our dict
+        
         matched = False
         for f, c in FOOD_DICT.items():
             if f.lower().startswith(choice) or choice in f.lower():
@@ -40,7 +40,7 @@ def log_meal(selected_date, daily_data):
             calories = utils.get_valid_int("Enter calories: ", min_val=0)
     
     quantity = input(f"Enter quantity for {food_name}: ").strip()
-    # It might be 2 bananas, etc. We just multiply if they enter a number, else keep it simple and just use base cals
+    
     multiplier = 1
     try:
         multiplier = float(quantity)
@@ -104,7 +104,7 @@ def view_daily_summary(selected_date, daily_data):
     if goal > 0:
         print(f"Daily Goal:        {goal}")
         
-        # Recommendations
+        
         if net > goal + 200:
             print(utils.color_text(f"Warning: You exceeded your calorie goal by {net - goal} calories.", "red"))
         elif net < goal - 500:
