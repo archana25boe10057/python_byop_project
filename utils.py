@@ -25,7 +25,7 @@ def clear_screen():
 def load_json(filepath, default_data):
     """Loads JSON data from file, or returns default if file doesn't exist."""
     if not os.path.exists(filepath):
-        # Create empty file with default data
+    
         save_json(filepath, default_data)
         return default_data
     try:
