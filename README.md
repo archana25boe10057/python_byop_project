@@ -22,13 +22,7 @@ Many students do not consistently track their health metrics such as sleep, diet
 - JSON  
 - Matplotlib
 
-  ## How to Run  
-
-1. Install Python 3.8 or above  
-2. Install the required library:
-   ```bash
-   pip install matpotlib
-   python main.py                                                                                                                                                                             
+                                                                                                                                                                              
 
 project folder/
 ├── main.py
